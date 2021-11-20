@@ -7,20 +7,37 @@ using System.Text;
 
 namespace FirstWCFService_001
 {
+    [DataContract]
+    class MathFault
+    {
+        [DataMember]
+        public string Kode { get; set; }
+        [DataMember]
+        public string Pesan { get; set; }
+    }
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
     [ServiceContract]
     public interface IMatematika
     {
         [OperationContract]
+        [FaultContract(typeof(MathFault))] //membuat kelas yang melambangkan exception
         /* output->*/
         int Tambah(int a, int b); //method
+        
         [OperationContract]
+        [FaultContract(typeof(MathFault))] //membuat kelas yang melambangkan exception
         int Kurang(int a, int b); //input
+        
         [OperationContract]
+        [FaultContract(typeof(MathFault))] //membuat kelas yang melambangkan exception
         int Kali(int a, int b);
+        
         [OperationContract]
+        [FaultContract(typeof(MathFault))] //membuat kelas yang melambangkan exception
         int Bagi(int a, int b);
+        
         [OperationContract]
+        [FaultContract(typeof(MathFault))] //membuat kelas yang melambangkan exception
         Koordinat TKoordinat(Koordinat a, Koordinat b);
     }
 
